@@ -27,7 +27,7 @@
 
 namespace aczutro{
 
-#define ACZUTRO_VERSION "aczutro version 1.0"
+#define ACZUTRO_VERSION "aczutro version 1.1"
 
     /* Returns a c string containing version information. */
     inline const char *version(){
@@ -103,13 +103,17 @@ namespace aczutro{
     }//unpack_halfword
 
 
-    /* Concatenates two halfwords or four bytes. */
+    /* Concatenates two halfwords, four bytes or one halfword and two bytes. */
     inline uint32_t make_word(uint16_t a, uint16_t b){
         return (a << 16) | b;
     }//make_word
 
     inline uint32_t make_word(uint8_t a, uint8_t b, uint8_t c, uint8_t d){
         return (a << 24) | (b << 16) | (c << 8) | d;
+    }//make_word
+
+    inline uint32_t make_word(uint16_t a, uint8_t b, uint8_t c){
+        return (a << 16) | (b << 8) | c;
     }//make_word
 
 
