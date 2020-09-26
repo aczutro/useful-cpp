@@ -21,6 +21,7 @@
 
 cmake_minimum_required (VERSION 3.17)
 project(useful-cpp)
+set(target-name aczutro-1.2)
 
 set(CMAKE_CXX_STANDARD 17)
 
@@ -29,9 +30,9 @@ include_directories(.)
 file(GLOB header-files *.h)
 file(GLOB source-files *.cc *.h)
 
-add_library(aczutro STATIC ${source-files})
+add_library(${target-name} STATIC ${source-files})
 
-install(TARGETS aczutro DESTINATION lib/libaczutro)
+install(TARGETS ${target-name} DESTINATION lib)
 install(FILES ${header-files} DESTINATION include/libaczutro)
 
 ### aczutro ########################################################### end ###

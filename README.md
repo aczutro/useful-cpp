@@ -1,4 +1,4 @@
-# useful-cpp
+# useful-cpp 1.2
 A collection of commonly-used functions for C++ programs.
 
 Copyright 2005 - 2020 Alexander Czutro
