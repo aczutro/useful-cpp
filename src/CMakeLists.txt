@@ -2,7 +2,7 @@
 #
 # useful-cpp - a collection of commonly-used functions for C++ programs
 #
-# Copyright 2005 - 2017 Alexander Czutro
+# Copyright 2005 - 2020 Alexander Czutro
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -19,49 +19,19 @@
 #
 ################################################################### aczutro ###
 
-.SUFFIXES:	.cc .o
-first:		all
+cmake_minimum_required (VERSION 3.17)
+project(useful-cpp)
 
-### some variables ############################################################
+set(CMAKE_CXX_STANDARD 17)
 
-# paths and targets
+include_directories(.)
 
-BASE = ..
-INCLUDE = $(BASE)/include
-LIB = $(BASE)/lib
-SRC = $(BASE)/src
+file(GLOB header-files *.h)
+file(GLOB source-files *.cc *.h)
 
-MAIN = aczutro
-LIB_SRC = lib$(MAIN)
+add_library(aczutro STATIC ${source-files})
 
-# compiler
-
-CCC = g++
-DEFINITIONS = 
-CFLAGS = -c -Wall -O3 -std=c++14 $(DEFINITIONS) -I$(INCLUDE)
-LFLAGS = -L$(LIB) -l$(MAIN)
-
-### rules #####################################################################
-
-all:			$(LIB)/$(LIB_SRC).a
-
-# $(MAIN):		$(LIB)/$(MAIN).o $(LIB)/$(LIB_SRC).a
-# 			$(CCC) -o $@ $< $(LFLAGS)
-# 			strip $@
-
-$(LIB)/%.o:		$(SRC)/%.cc $(INCLUDE)/$(LIB_SRC).h
-			mkdir -p $(LIB)
-			$(CCC) -o $@ $< $(CFLAGS)
-
-$(LIB)/$(LIB_SRC).a:	$(LIB)/$(LIB_SRC).o
-			ar rv $@ $<
-			ranlib $@
-
-# cleaning
-
-.PHONY:	clean
-
-clean:
-	@rm -rf $(MAIN) $(LIB)
+install(TARGETS aczutro DESTINATION lib/libaczutro)
+install(FILES ${header-files} DESTINATION include/libaczutro)
 
 ### aczutro ########################################################### end ###
