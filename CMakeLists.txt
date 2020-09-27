@@ -25,10 +25,10 @@ set(target-name aczutro-1.2)
 
 set(CMAKE_CXX_STANDARD 17)
 
-include_directories(.)
+include_directories(src)
 
-file(GLOB header-files *.h)
-file(GLOB source-files *.cc *.h)
+file(GLOB header-files src/*.h)
+file(GLOB source-files src/*.cc src/*.h)
 
 add_library(${target-name} STATIC ${source-files})
 

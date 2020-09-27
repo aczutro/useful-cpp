@@ -21,7 +21,7 @@
 
 all: build
 
-SRC=src
+SRC=.
 BUILD=build
 
 $(BUILD)/CMakeCache.txt: $(SRC)/CMakeLists.txt
